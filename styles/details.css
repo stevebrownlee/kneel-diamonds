@@ -1,0 +1,17 @@
+.choices {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.options {
+    flex-basis: 24%;
+    margin: 0 2rem;
+    border: 1px dotted goldenrod;
+    padding: 1rem;
+}
+
+.customOrders {
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
