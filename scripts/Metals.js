@@ -1,4 +1,4 @@
-import { getMetals, setMetal } from "./database.js"
+import { getCurrentOrder, getMetals, setMetal } from "./database.js"
 
 const metals = getMetals()
 
@@ -12,17 +12,18 @@ document.addEventListener(
 )
 
 export const Metals = () => {
+    const currentOrder = getCurrentOrder()
+
     let html = "<ul>"
 
-    const listItems = metals.map(metal => {
-        return `<li>
-            <input type="radio" name="metal" value="${metal.id}" /> ${metal.metal}
+    for (const metal of metals) {
+        html += `<li>
+            <input type="radio"
+                ${currentOrder.metalId === metal.id ? "checked" : ""}
+                name="metal" value="${metal.id}" /> ${metal.metal}
         </li>`
-    })
+    }
 
-    html += listItems.join("")
     html += "</ul>"
-
     return html
 }
-
