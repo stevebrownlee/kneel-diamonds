@@ -1,5 +1,6 @@
 import { getMetals, getOrders, getSizes, getStyles } from "./database.js"
 
+
 const buildOrderListItem = (order) => {
     const metals = getMetals()
     const sizes = getSizes()
@@ -9,7 +10,15 @@ const buildOrderListItem = (order) => {
     const sizePrice = sizes.find(s => s.id === order.sizeId).price
     const stylePrice = styles.find(st => st.id === order.styleId).price
 
-    const totalCost = metalPrice + stylePrice + sizePrice
+    let totalCost = metalPrice + stylePrice + sizePrice
+
+    if (order.type === "earrings") {
+        totalCost *= 2
+    }
+
+    if (order.type === "necklace") {
+        totalCost *= 4
+    }
 
     return `<li>
         Order #${order.id} cost ${totalCost.toLocaleString("en-US", {

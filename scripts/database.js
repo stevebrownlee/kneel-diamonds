@@ -9,6 +9,7 @@ const database = {
     orderBuilder: {
 
     },
+    type: "ring",
     styles: [
         { id: 1, style: "Classic", price: 500 },
         { id: 2, style: "Modern", price: 710 },
@@ -34,9 +35,13 @@ const database = {
             metalId: 3,
             sizeId: 2,
             styleId: 3,
-            orderedOn: 1614659931693
+            timestamp: 1614659931693
         }
     ]
+}
+
+export const setType = (type) => {
+    database.type = type
 }
 
 export const getCurrentOrder = () => {
@@ -45,23 +50,28 @@ export const getCurrentOrder = () => {
 
 export const setMetal = (id) => {
     database.orderBuilder.metalId = id
-    // document.dispatchEvent(new CustomEvent("stateChanged"))
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setSize = (id) => {
     database.orderBuilder.sizeId = id
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setStyle = (id) => {
     database.orderBuilder.styleId = id
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const addCustomOrder = () => {
     const newOrder = {...database.orderBuilder}
+    newOrder.timestamp = Date.now()
     newOrder.id = [...database.customOrders].pop().id + 1
+    newOrder.type = database.type
     database.customOrders.push(newOrder)
 
     database.orderBuilder = {}
+    database.type = "ring"
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 

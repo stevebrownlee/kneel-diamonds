@@ -31,3 +31,8 @@ ul {
     color: lightgoldenrodyellow;
     font-size: 1rem;
 }
+
+.types {
+    display: flex;
+    margin: 2rem 0 0 2rem;
+}
