@@ -1,4 +1,4 @@
-import { getStyles, setStyle } from "./database.js"
+import { getCurrentOrder, getStyles, setStyle } from "./database.js"
 
 const styles = getStyles()
 
@@ -12,11 +12,15 @@ document.addEventListener(
 )
 
 export const JewelryStyles = () => {
+    const currentOrder = getCurrentOrder()
+
     let html = "<ul>"
 
     const listItems = styles.map(style => {
         return `<li>
-            <input type="radio" name="style" value="${style.id}" /> ${style.style}
+            <input type="radio"
+                ${currentOrder.styleId === style.id ? "checked" : ""}
+                name="style" value="${style.id}" /> ${style.style}
         </li>`
     })
 

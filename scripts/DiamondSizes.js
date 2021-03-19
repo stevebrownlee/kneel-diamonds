@@ -1,6 +1,6 @@
-import { getSizes, setSize } from "./database.js"
+import { getCurrentOrder, getSizes, setSize } from "./database.js"
 
-const metals = getSizes()
+const sizes = getSizes()
 
 document.addEventListener(
     "change",
@@ -12,11 +12,15 @@ document.addEventListener(
 )
 
 export const DiamondSizes = () => {
+    const currentOrder = getCurrentOrder()
+
     let html = "<ul>"
 
-    const listItems = metals.map(size => {
+    const listItems = sizes.map(size => {
         return `<li>
-            <input type="radio" name="size" value="${size.id}" /> ${size.carets}
+            <input type="radio"
+                ${currentOrder.sizeId === size.id ? "checked" : ""}
+                name="size" value="${size.id}" /> ${size.carets}
         </li>`
     })
 
