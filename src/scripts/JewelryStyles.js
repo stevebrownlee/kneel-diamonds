@@ -1,17 +1,13 @@
-import { getCurrentOrder, getStyles, setStyle } from "./database.js"
+import { getCurrentOrder, getStyles, setStyle } from "./dataAccess.js"
 
-const styles = getStyles()
-
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.name === "style") {
-            setStyle(parseInt(event.target.value))
-        }
+document.addEventListener("change", (event) => {
+    if (event.target.name === "style") {
+        setStyle(parseInt(event.target.value))
     }
-)
+})
 
 export const JewelryStyles = () => {
+    const styles = getStyles()
     const currentOrder = getCurrentOrder()
 
     let html = "<ul>"

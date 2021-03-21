@@ -1,4 +1,4 @@
-import { setType } from "./database.js"
+import { setType } from "./dataAccess.js"
 
 document.addEventListener("click", clickEvent => {
     if (clickEvent.target.name === "jewelryType") {

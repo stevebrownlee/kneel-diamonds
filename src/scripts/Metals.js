@@ -1,18 +1,15 @@
-import { getCurrentOrder, getMetals, setMetal } from "./database.js"
+import { getCurrentOrder, getMetals, setMetal } from "./dataAccess.js"
 
-const metals = getMetals()
 
-document.addEventListener(
-    "change",
-    (event) => {
-        if (event.target.name === "metal") {
-            setMetal(parseInt(event.target.value))
-        }
+document.addEventListener("change", (event) => {
+    if (event.target.name === "metal") {
+        setMetal(parseInt(event.target.value))
     }
-)
+})
 
 export const Metals = () => {
     const currentOrder = getCurrentOrder()
+    let metals = getMetals()
 
     let html = "<ul>"
 
