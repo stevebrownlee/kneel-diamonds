@@ -1,18 +1,13 @@
 const applicationState = {
     orderBuilder: {},
-    type: "ring",
     orders: [],
     metals: [],
     styles: [],
     sizes: []
 }
 
-export const setType = (type) => {
-    applicationState.type = type
-}
-
-export const getCurrentOrder = () => {
-    return applicationState.orderBuilder
+export const getMetals = () => {
+    return [...applicationState.metals]
 }
 
 export const setMetal = (id) => {
@@ -20,9 +15,17 @@ export const setMetal = (id) => {
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
+export const getSizes = () => {
+    return [...applicationState.sizes]
+}
+
 export const setSize = (id) => {
     applicationState.orderBuilder.sizeId = id
     document.dispatchEvent(new CustomEvent("stateChanged"))
+}
+
+export const getStyles = () => {
+    return [...applicationState.styles]
 }
 
 export const setStyle = (id) => {
@@ -31,12 +34,11 @@ export const setStyle = (id) => {
 }
 
 export const addCustomOrder = () => {
-    const newOrder = {...applicationState.orderBuilder}
+    const newOrder = { ...applicationState.orderBuilder }
     newOrder.timestamp = Date.now()
-    newOrder.type = applicationState.type
 
     return fetch("http://localhost:8088/customOrders", {
-        method:"POST",
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
@@ -54,17 +56,11 @@ export const getOrders = () => {
     return [...applicationState.orders]
 }
 
-export const getMetals = () => {
-    return [...applicationState.metals]
+export const getCurrentOrder = () => {
+    return applicationState.orderBuilder
 }
 
-export const getStyles = () => {
-    return [...applicationState.styles]
-}
 
-export const getSizes = () => {
-    return [...applicationState.sizes]
-}
 
 export const fetchOrders = () => {
     return fetch("http://localhost:8088/customOrders")
@@ -89,12 +85,12 @@ export const fetchMetals = () => {
 
 export const fetchSizes = () => {
     return fetch("http://localhost:8088/sizes")
-    .then(response => response.json())
-    .then(
-        (sizes) => {
-            applicationState.sizes = sizes
-        }
-    )
+        .then(response => response.json())
+        .then(
+            (sizes) => {
+                applicationState.sizes = sizes
+            }
+        )
 
 }
 
@@ -107,4 +103,3 @@ export const fetchStyles = () => {
             }
         )
 }
-
