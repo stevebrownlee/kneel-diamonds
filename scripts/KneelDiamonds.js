@@ -39,9 +39,22 @@ export const KneelDiamonds = () => {
             <button id="orderButton">Create Custom Order</button>
         </article>
 
+        <section class="messages"></section>
+
         <article class="customOrders">
             <h2>Custom Jewelry Orders</h2>
             ${Orders()}
         </article>
     `
 }
+
+document.addEventListener("error", event => {
+    const messages = document.querySelector(".messages")
+    messages.classList.toggle("show")
+    messages.innerHTML = event.detail.message
+
+    setTimeout(() => {
+        messages.classList.toggle("show")
+        document.querySelector(".messages").innerHTML = ""
+    }, 2000);
+})

@@ -35,6 +35,7 @@ const database = {
             metalId: 3,
             sizeId: 2,
             styleId: 3,
+            type: "earring",
             timestamp: 1614659931693
         }
     ]
@@ -64,30 +65,43 @@ export const setStyle = (id) => {
 }
 
 export const addCustomOrder = () => {
-    const newOrder = {...database.orderBuilder}
-    newOrder.timestamp = Date.now()
-    newOrder.id = [...database.customOrders].pop().id + 1
-    newOrder.type = database.type
-    database.customOrders.push(newOrder)
+    if (
+        database.orderBuilder.styleId
+        && database.orderBuilder.sizeId
+        && database.orderBuilder.metalId) {
 
-    database.orderBuilder = {}
-    database.type = "ring"
-    document.dispatchEvent(new CustomEvent("stateChanged"))
+        const newOrder = { ...database.orderBuilder }
+        newOrder.timestamp = Date.now()
+        newOrder.id = structuredClone(database.customOrders).pop().id + 1
+        newOrder.type = database.type
+        database.customOrders.push(newOrder)
+
+        database.orderBuilder = {}
+        database.type = "ring"
+        document.dispatchEvent(new CustomEvent("stateChanged"))
+    }
+    else {
+        document.dispatchEvent(new CustomEvent("error", {
+            detail: {
+                "message": "Please choose all options before ordering"
+            }
+        }))
+    }
 }
 
 export const getOrders = () => {
-    return [...database.customOrders]
+    return structuredClone(database.customOrders)
 }
 
 export const getMetals = () => {
-    return [...database.metals]
+    return structuredClone(database.metals)
 }
 
 export const getSizes = () => {
-    return [...database.sizes]
+    return structuredClone(database.sizes)
 }
 
 export const getStyles = () => {
-    return [...database.styles]
+    return structuredClone(database.styles)
 }
 

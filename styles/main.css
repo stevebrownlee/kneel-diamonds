@@ -36,3 +36,17 @@ ul {
     display: flex;
     margin: 2rem 0 0 2rem;
 }
+
+.messages {
+    border-radius: 3.5px;
+    border: 1px dashed rgb(215, 133, 75);
+    background-color: rgb(219, 209, 206);
+    color: #ff0000;
+    padding: 1rem 2rem;
+    margin: 0 6rem;
+    display: none;
+}
+
+.show {
+    display: block;
+}
