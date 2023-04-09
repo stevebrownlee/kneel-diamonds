@@ -1,5 +1,4 @@
 {
-  "orderBuilder": {},
   "styles": [
     {
       "id": 1,
@@ -71,7 +70,7 @@
       "price": 1241
     }
   ],
-  "customOrders": [
+  "orders": [
     {
       "id": 1,
       "metalId": 3,
@@ -99,6 +98,34 @@
       "styleId": 3,
       "timestamp": 1616334890694,
       "id": 4
+    },
+    {
+      "metalId": 1,
+      "styleId": 1,
+      "sizeId": 1,
+      "timestamp": 1681063196722,
+      "id": 5
+    },
+    {
+      "metalId": 2,
+      "styleId": 2,
+      "sizeId": 2,
+      "timestamp": 1681063204613,
+      "id": 6
+    },
+    {
+      "metalId": 4,
+      "styleId": 2,
+      "sizeId": 3,
+      "timestamp": 1681063213457,
+      "id": 7
+    },
+    {
+      "metalId": 5,
+      "styleId": 3,
+      "sizeId": 5,
+      "timestamp": 1681063219533,
+      "id": 8
     }
   ]
 }

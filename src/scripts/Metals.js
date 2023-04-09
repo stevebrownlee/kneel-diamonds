@@ -1,22 +1,22 @@
-import { getCurrentOrder, getMetals, setMetal } from "./dataAccess.js"
-
+import { getApplicationState, setMetalChoice } from "./ApplicationState.js"
 
 document.addEventListener("change", (event) => {
     if (event.target.name === "metal") {
-        setMetal(parseInt(event.target.value))
+        setMetalChoice(parseInt(event.target.value))
     }
 })
 
-export const Metals = () => {
-    const currentOrder = getCurrentOrder()
-    let metals = getMetals()
+export const Metals = async () => {
+    const request = await fetch("http://localhost:8088/metals")
+    const metals = await request.json()
+    const currentUserChoices = getApplicationState()
 
     let html = "<ul>"
 
     for (const metal of metals) {
         html += `<li>
             <input type="radio"
-                ${currentOrder.metalId === metal.id ? "checked" : ""}
+                ${currentUserChoices.chosenMetal === metal.id ? "checked" : ""}
                 name="metal" value="${metal.id}" /> ${metal.metal}
         </li>`
     }

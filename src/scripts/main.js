@@ -1,36 +1,17 @@
-import { fetchMetals, fetchOrders, fetchSizes, fetchStyles } from "./dataAccess.js"
+import { getApplicationState } from "./ApplicationState.js"
 import { KneelDiamonds } from "./KneelDiamonds.js"
 
 const mainContainer = document.querySelector("#container")
 
-const syncDataFromAPI = () => {
-    return fetchStyles()
-        .then(
-            () => fetchSizes()
-        )
-        .then(
-            () => fetchStyles()
-        )
-        .then(
-            () => fetchOrders()
-        )
-        .then(
-            () => fetchMetals()
-        )
-}
-
-const renderAllHTML = () => {
-    syncDataFromAPI()
-        .then(
-            () => {
-                mainContainer.innerHTML = KneelDiamonds()
-            }
-        )
-}
-
-document.addEventListener("stateChanged", event => {
+document.addEventListener("stateChanged", async () => {
     console.log("State of data has changed. Regenerating HTML...")
-    renderAllHTML()
+
+    const currentState = getApplicationState()
+    console.log("Current state is...", currentState)
+
+    const newHTML = await KneelDiamonds()
+    mainContainer.innerHTML = newHTML
+
 })
 
 document.dispatchEvent(new CustomEvent("stateChanged"))

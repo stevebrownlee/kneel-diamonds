@@ -1,15 +1,16 @@
-import { getCurrentOrder, getSizes, setSize } from "./dataAccess.js"
+import { getApplicationState, setSizeChoice } from "./ApplicationState.js"
 
 
 document.addEventListener("change", (event) => {
     if (event.target.name === "size") {
-        setSize(parseInt(event.target.value))
+        setSizeChoice(parseInt(event.target.value))
     }
 })
 
-export const DiamondSizes = () => {
-    const currentOrder = getCurrentOrder()
-    const sizes = getSizes()
+export const DiamondSizes = async () => {
+    const request = await fetch("http://localhost:8088/sizes")
+    const sizes = await request.json()
+    const currentUserChoices = getApplicationState()
 
     let html = `
         <ul>
@@ -17,7 +18,7 @@ export const DiamondSizes = () => {
             sizes.map(size => {
                 return `<li>
                     <input type="radio"
-                        ${currentOrder.sizeId === size.id ? "checked" : ""}
+                        ${currentUserChoices.chosenSize === size.id ? "checked" : ""}
                         name="size" value="${size.id}" /> ${size.carets}
                 </li>`
             }).join("")
