@@ -18,7 +18,7 @@ export const DiamondSizes = async () => {
             sizes.map(size => {
                 return `<li>
                     <input type="radio"
-                        ${currentUserChoices.chosenSize === size.id ? "checked" : ""}
+                        ${currentUserChoices.sizeId === size.id ? "checked" : ""}
                         name="size" value="${size.id}" /> ${size.carets}
                 </li>`
             }).join("")

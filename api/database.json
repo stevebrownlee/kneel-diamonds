@@ -79,53 +79,16 @@
       "timestamp": 1614659931693
     },
     {
-      "metalId": 1,
+      "metalId": 3,
       "sizeId": 1,
       "styleId": 3,
-      "timestamp": 1616333988188,
       "id": 2
     },
     {
-      "metalId": 1,
-      "sizeId": 1,
-      "styleId": 1,
-      "timestamp": 1616334884289,
-      "id": 3
-    },
-    {
       "metalId": 5,
-      "sizeId": 5,
-      "styleId": 3,
-      "timestamp": 1616334890694,
-      "id": 4
-    },
-    {
-      "metalId": 1,
-      "styleId": 1,
-      "sizeId": 1,
-      "timestamp": 1681063196722,
-      "id": 5
-    },
-    {
-      "metalId": 2,
-      "styleId": 2,
       "sizeId": 2,
-      "timestamp": 1681063204613,
-      "id": 6
-    },
-    {
-      "metalId": 4,
-      "styleId": 2,
-      "sizeId": 3,
-      "timestamp": 1681063213457,
-      "id": 7
-    },
-    {
-      "metalId": 5,
-      "styleId": 3,
-      "sizeId": 5,
-      "timestamp": 1681063219533,
-      "id": 8
+      "styleId": 1,
+      "id": 3
     }
   ]
 }

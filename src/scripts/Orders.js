@@ -1,31 +1,16 @@
-const buildOrderListItem = (order, metals, sizes, styles) => {
-    const metalPrice = metals.find(m => m.id === order.metalId).price
-    const sizePrice = sizes.find(s => s.id === order.sizeId).price
-    const stylePrice = styles.find(st => st.id === order.styleId).price
+export const Orders = async () => {
+    const orders = await fetch("http://localhost:8088/orders?_expand=metal&_expand=size&_expand=style").then(res => res.json())
 
-    let totalCost = metalPrice + stylePrice + sizePrice
+    let html = orders.map((order) => {
+        let totalCost = order.metal.price + order.style.price + order.size.price
 
-    return `<li>
-        Order #${order.id} cost ${totalCost.toLocaleString("en-US", {
+        return `<div>Order #${order.id} costs ${totalCost.toLocaleString("en-US", {
             style: "currency",
             currency: "USD"
-        })}
-    </li>`
-}
+        })}</div>`
+    })
 
-export const Orders = async () => {
-    const orders = await fetch("http://localhost:8088/orders").then(res => res.json())
-    const styles = await fetch("http://localhost:8088/styles").then(res => res.json())
-    const metals = await fetch("http://localhost:8088/metals").then(res => res.json())
-    const sizes = await fetch("http://localhost:8088/sizes").then(res => res.json())
-
-
-    let html = "<ul>"
-    html += orders
-            .map((order) => buildOrderListItem(order, metals, sizes, styles))
-            .join("")
-    html += "</ul>"
+    html = html.join("")
 
     return html
 }
-

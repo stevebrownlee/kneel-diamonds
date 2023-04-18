@@ -1,7 +1,7 @@
 let applicationState = {
-    chosenMetal: 0,
-    chosenSize: 0,
-    chosenStyle: 0
+    metalId: 0,
+    sizeId: 0,
+    styleId: 0
 }
 
 export const getApplicationState = () => {
@@ -9,43 +9,34 @@ export const getApplicationState = () => {
 }
 
 export const setMetalChoice = (chosenMetalId) => {
-    applicationState.chosenMetal = chosenMetalId
+    applicationState.metalId = chosenMetalId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setStyleChoice = (chosenStyleId) => {
-    applicationState.chosenStyle = chosenStyleId
+    applicationState.styleId = chosenStyleId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
 export const setSizeChoice = (chosenSizeId) => {
-    applicationState.chosenSize = chosenSizeId
+    applicationState.sizeId = chosenSizeId
     document.dispatchEvent(new CustomEvent("stateChanged"))
 }
 
-export const addCustomOrder = () => {
-    const newOrder = {
-        metalId: applicationState.chosenMetal,
-        styleId: applicationState.chosenStyle,
-        sizeId: applicationState.chosenSize
-    }
-    newOrder.timestamp = Date.now()
-
-    return fetch("http://localhost:8088/orders", {
+export const addCustomOrder = async () => {
+    const response = await fetch("http://localhost:8088/orders", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(newOrder)
+        body: JSON.stringify(applicationState)
     })
-        .then(response => response.json())
-        .then(() => {
-            applicationState = {
-                chosenMetal: 0,
-                chosenSize: 0,
-                chosenStyle: 0
-            }
 
-            document.dispatchEvent(new CustomEvent("stateChanged"))
-        })
+    applicationState = {
+        metalId: 0,
+        sizeId: 0,
+        styleId: 0
+    }
+
+    document.dispatchEvent(new CustomEvent("stateChanged"))
 }

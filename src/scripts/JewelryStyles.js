@@ -16,7 +16,7 @@ export const JewelryStyles = async () => {
     const listItems = styles.map(style => {
         return `<li>
             <input type="radio"
-                ${currentUserChoices.chosenStyle === style.id ? "checked" : ""}
+                ${currentUserChoices.styleId === style.id ? "checked" : ""}
                 name="style" value="${style.id}" /> ${style.style}
         </li>`
     })
