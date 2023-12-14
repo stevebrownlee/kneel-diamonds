@@ -1,0 +1,15 @@
+{% block header %}
+  <h1>
+    {% block title %}
+      Metals
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+<ul>
+  {% for metal in metals %}
+    <li>
+      <input type="radio" name="metal" value="{{ metal['id'] }}" /> {{ metal['metal'] }}
+    </li>
+  {% endfor %}
+</ul>

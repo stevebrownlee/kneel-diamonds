@@ -8,10 +8,23 @@
 
     <body>
         <main id="container">
+            <header>
+                <h1>Kneel Diamonds</h1>
+            </header>
 
+            <section>
+                <button id="orderButton" hx-get="/orders" hx-target="#orders">Create Custom Order</button>
+            </section>
+
+            <section class="customOrders">
+                <h2>Custom Jewelry Orders</h2>
+                <div id="orders"></div>
+            </section>
         </main>
 
-        <script type="module" src="./scripts/main.js"></script>
+        <!-- <script type="module" src="./scripts/main.js"></script> -->
+        <script src="https://unpkg.com/htmx.org@1.9.9"
+            integrity="sha384-QFjmbokDn2DjBjq+fM+8LUIVrAgqcNW2s0PjAxHETgRn9l4fvX31ZxDxvwQnyMOX" crossorigin="anonymous"></script>
     </body>
 </html>
 

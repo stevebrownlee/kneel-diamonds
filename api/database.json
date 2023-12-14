@@ -89,6 +89,30 @@
       "sizeId": 2,
       "styleId": 1,
       "id": 3
+    },
+    {
+      "metalId": 3,
+      "sizeId": 4,
+      "styleId": 2,
+      "id": 4
+    },
+    {
+      "metalId": 5,
+      "sizeId": 5,
+      "styleId": 3,
+      "id": 5
+    },
+    {
+      "metalId": 1,
+      "sizeId": 1,
+      "styleId": 1,
+      "id": 6
+    },
+    {
+      "metalId": 5,
+      "sizeId": 2,
+      "styleId": 1,
+      "id": 7
     }
   ]
 }

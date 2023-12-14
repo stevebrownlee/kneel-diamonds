@@ -1,0 +1,19 @@
+{% block header %}
+  <h1>
+    {% block title %}
+      Orders
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+{% for order in orders %}
+  <article class="order">
+    <section class="order__details">
+        <p>Size: {{ order['size_carets'] }}</p>
+        <p>Style: {{ order['style'] }}</p>
+        <p>Metal: {{ order['metal'] }}</p>
+        <p>Placed on: {{ order['timestamp'] }}</p>
+        <p><button hx-delete="/orders/{{ order['id'] }}">Cancel</button></p>
+    </section>
+  </article>
+{% endfor %}

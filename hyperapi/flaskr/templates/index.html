@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <header>
+    <h1>Kneel Diamonds</h1>
+  </header>
+
+  <form hx-post="/orders" hx-trigger="submit">
+    <article class="choices">
+      <section class="metals options" hx-get="/metals" hx-trigger="load"></section>
+      <section class="sizes options" hx-get="/sizes" hx-trigger="load"></section>
+      <section class="styles options" hx-get="/styles" hx-trigger="load"></section>
+    </article>
+
+    <button id="orderButton">Create Custom Order</button>
+  </form>
+
+  <section id="orders" hx-get="/orders" hx-trigger="OrderDeleted from:body, OrderCreated from:body, load"></section>
+{% endblock %}

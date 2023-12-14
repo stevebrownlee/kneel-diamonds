@@ -1,0 +1,15 @@
+{% block header %}
+  <h1>
+    {% block title %}
+      Styles
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+<ul>
+  {% for style in styles %}
+    <li>
+      <input type="radio" name="style" value="{{ style['id'] }}" /> {{ style['style'] }}
+    </li>
+  {% endfor %}
+</ul>

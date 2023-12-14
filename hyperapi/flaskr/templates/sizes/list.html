@@ -1,0 +1,15 @@
+{% block header %}
+  <h1>
+    {% block title %}
+      Caret Sizes
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+<ul>
+  {% for size in sizes %}
+    <li>
+      <input type="radio" name="size" value="{{ size['id'] }}" /> {{ size['carets'] }}
+    </li>
+  {% endfor %}
+</ul>
