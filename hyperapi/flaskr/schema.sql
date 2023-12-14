@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS Styles;
 DROP TABLE IF EXISTS Sizes;
 DROP TABLE IF EXISTS Metals;
 DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Reviews;
 
 -- Create the Styles table
 CREATE TABLE Styles (
@@ -58,9 +59,26 @@ CREATE TABLE Orders (
 -- Insert data into the Orders table
 INSERT INTO Orders (id, metalId, sizeId, styleId, timestamp) VALUES
 (1, 3, 2, 3, 1614659931693),
-(2, 3, 1, 3, 1613549931693), -- Replace NULL with the actual timestamp
-(3, 5, 2, 1, 1612439831693), -- Replace NULL with the actual timestamp
-(4, 3, 4, 2, 1611329731693), -- Replace NULL with the actual timestamp
-(5, 5, 5, 3, 1610219631693), -- Replace NULL with the actual timestamp
-(6, 1, 1, 1, 1609109531693), -- Replace NULL with the actual timestamp
-(7, 5, 2, 1, 1608059431693); -- Replace NULL with the actual timestamp
+(2, 3, 1, 3, 1613549931693),
+(3, 5, 2, 1, 1612439831693),
+(4, 3, 4, 2, 1611329731693),
+(5, 5, 5, 3, 1610219631693),
+(6, 1, 1, 1, 1609109531693),
+(7, 5, 2, 1, 1608059431693);
+
+CREATE TABLE Reviews (
+    id INTEGER PRIMARY KEY,
+    body TEXT NOT NULL,
+    author TEXT NOT NULL,
+    timestamp INTEGER NOT NULL,
+    orderId INTEGER NOT NULL,
+    FOREIGN KEY(`orderId`) REFERENCES `Orders`(`id`)
+);
+
+INSERT INTO Reviews (id, body, author, timestamp, orderId) VALUES
+(1, 'Totam et qui numquam impedit vero unde unde ea vero. Debitis odit alias repellat excepturi corrupti dolorum vitae. Necessitatibus repellendus harum quia esse qui voluptatum. Est vel nihil maiores et quia nemo.', 'Mabel Kertzmann', 1614659931693, 5),
+(2, 'Est rerum ducimus possimus voluptate. Dolore rerum dolor voluptatem exercitationem. Magnam pariatur aperiam laboriosam earum. Quod sit facilis sit voluptatem voluptas et harum et molestiae. Sit consequatur qui labore temporibus maiores. Sint tempore amet vero ut consequatur mollitia vero.', 'Colleen McKenzie', 1613549931693, 3),
+(3, 'Inventore dolores totam suscipit nulla impedit aut. Officia cum reprehenderit veniam et. Molestiae et eius omnis ab. Ut ut repellat voluptatem repellendus iure. Qui eaque veniam consequatur numquam aut.', 'Mr. Roland Rau', 1612439831693, 6),
+(4, 'Veniam aut reprehenderit fuga ad omnis. Quia adipisci blanditiis. Et neque perferendis aut dolore cupiditate fugit. Voluptatem quis eos ad repudiandae vel voluptatem rerum aut. Reiciendis ipsum eius qui possimus quibusdam qui nostrum.', 'Ronald Cremin', 1611329731693, 2)
+;
+

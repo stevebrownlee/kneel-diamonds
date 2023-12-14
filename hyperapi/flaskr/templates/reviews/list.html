@@ -1,0 +1,15 @@
+{% block header %}
+  <h1>
+    {% block title %}
+      Product Reviews
+    {% endblock %}
+  </h1>
+{% endblock %}
+
+{% for review in reviews %}
+  <article class="review">
+    <section class="review__header">Order for {{ review['carets'] }} caret {{ review['style'] }}  {{ review['metal'] }} jewelry</section>
+    <section class="review__body">{{ review['body'] }}</section>
+    <section class="review__footer">by {{ review['author'] }}</section>
+  </article>
+{% endfor %}

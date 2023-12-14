@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block styles %}
+  <link rel="stylesheet" href="{{ url_for('static', filename = 'reviews.css') }}" />
+{% endblock %}
+
+{% block content %}
+  <header>
+    <h1>Kneel Diamonds</h1>
+  </header>
+
+  <section id="reviews" hx-get="/reviews" hx-trigger="load"></section>
+{% endblock %}

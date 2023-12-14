@@ -2,7 +2,7 @@ import os
 
 from flask import Flask, render_template
 
-from . import db, orders, metals, styles, sizes
+from . import db, orders, metals, styles, sizes, reviews
 
 
 def create_app(test_config=None):
@@ -17,6 +17,7 @@ def create_app(test_config=None):
     app.register_blueprint(metals.bp)
     app.register_blueprint(sizes.bp)
     app.register_blueprint(styles.bp)
+    app.register_blueprint(reviews.bp)
 
     if test_config is None:
         # load the instance config, if it exists, when not testing

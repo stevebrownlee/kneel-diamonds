@@ -4,11 +4,22 @@
     <meta charset="utf-8" />
     <title>Kneel Diamonds</title>
     <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}" />
+    {% block styles %}
+    {% endblock %}
   </head>
 
   <body>
+    <nav class="navbar">
+      <section class="nav__link">
+        <a href="/">Home</a>
+      </section>
+      <section class="nav__link">
+        <a href="/productreviews">Reviews</a>
+      </section>
+    </nav>
     <main id="container">
       {% block content %}
+
       {% endblock %}
     </main>
 

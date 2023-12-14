@@ -36,3 +36,14 @@ ul {
     display: flex;
     margin: 2rem 0 0 2rem;
 }
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 0 0 3rem;
+}
+
+.nav__link {
+    margin: 0 3rem 0 0;
+}
