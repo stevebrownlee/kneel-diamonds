@@ -72,10 +72,14 @@ def delete_order(id):
 @bp.route('/orders', methods=['POST'])
 def create_order():
     # Get data from the POST request
-    metal = int(request.form.get('metal'))
-    style = int(request.form.get('style'))
-    size = int(request.form.get('size'))
     now = int(time.time() * 1000)
+    try:
+        metal = int(request.form.get('metal'))
+        style = int(request.form.get('style'))
+        size = int(request.form.get('size'))
+    except TypeError:
+        response = make_response('<section>Please choose all options</section>', 400)
+        return response
 
     db = get_db()
     db.execute("""

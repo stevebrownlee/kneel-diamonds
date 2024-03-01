@@ -47,3 +47,10 @@ ul {
 .nav__link {
     margin: 0 3rem 0 0;
 }
+
+#badrequest {
+    background-color: rgb(228, 86, 86);
+    color: snow;
+    margin: 0 5rem;
+    padding: 0.5rem;
+}
